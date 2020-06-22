@@ -34,4 +34,11 @@ public class GuessMatcherTest {
 
     assertEquals("0A0B", matchResult);
   }
+
+  @Test
+  public void should_return_0A0B_when_match_guess_given_input_with_0_correct_and_4_wrong_position() {
+    String matchResult = guessMatcher.matchGuess("4321");
+
+    assertEquals("0A4B", matchResult);
+  }
 }
