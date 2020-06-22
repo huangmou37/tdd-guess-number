@@ -1,8 +1,25 @@
 package cn.tdd.guessnumber;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class InputValidator {
 
   public boolean validate(String input) {
-    return true;
+    return !hasDuplicates(input);
+  }
+
+  private boolean hasDuplicates(String input) {
+    char[] inputNumbers = input.toCharArray();
+
+    Set<Character> distinctNumbers = new HashSet<>();
+    for (char c: inputNumbers) {
+      if (!distinctNumbers.contains(c)) {
+        distinctNumbers.add(c);
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 }

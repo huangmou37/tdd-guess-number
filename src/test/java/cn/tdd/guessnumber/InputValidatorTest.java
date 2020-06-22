@@ -2,6 +2,7 @@ package cn.tdd.guessnumber;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class InputValidatorTest {
@@ -13,5 +14,14 @@ public class InputValidatorTest {
     String input = "1234";
 
     assertTrue(validator.validate(input));
+  }
+
+  @Test
+  public void should_return_true_when_validate_given_invalid_input_with_duplicated_numbers() {
+    InputValidator validator = new InputValidator();
+
+    String input = "1123";
+
+    assertFalse(validator.validate(input));
   }
 }
