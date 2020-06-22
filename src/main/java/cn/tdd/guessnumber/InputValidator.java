@@ -6,7 +6,7 @@ import java.util.Set;
 public class InputValidator {
 
   public boolean validate(String input) {
-    return !hasDuplicates(input) && !hasNonNumeric(input) && !hasLengthLessThan4(input);
+    return hasLengthAsFour(input) && !hasDuplicates(input) && !hasNonNumeric(input);
   }
 
   private boolean hasDuplicates(String input) {
@@ -34,7 +34,7 @@ public class InputValidator {
     return false;
   }
 
-  private boolean hasLengthLessThan4(String input) {
-    return input.length() < 4;
+  private boolean hasLengthAsFour(String input) {
+    return input.length() == 4;
   }
 }
