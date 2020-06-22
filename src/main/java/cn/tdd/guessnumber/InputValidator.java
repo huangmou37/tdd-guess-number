@@ -6,7 +6,7 @@ import java.util.Set;
 public class InputValidator {
 
   public boolean validate(String input) {
-    return !hasDuplicates(input);
+    return !hasDuplicates(input) && !hasNonNumeric(input);
   }
 
   private boolean hasDuplicates(String input) {
@@ -17,6 +17,17 @@ public class InputValidator {
       if (!distinctNumbers.contains(c)) {
         distinctNumbers.add(c);
       } else {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private boolean hasNonNumeric(String input) {
+    char[] inputNumbers = input.toCharArray();
+
+    for (char c: inputNumbers) {
+      if (!Character.isDigit(c)) {
         return true;
       }
     }

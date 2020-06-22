@@ -24,4 +24,13 @@ public class InputValidatorTest {
 
     assertFalse(validator.validate(input));
   }
+
+  @Test
+  public void should_return_true_when_validate_given_invalid_input_with_non_numeric_characters() {
+    InputValidator validator = new InputValidator();
+
+    String input = "a123";
+
+    assertFalse(validator.validate(input));
+  }
 }
