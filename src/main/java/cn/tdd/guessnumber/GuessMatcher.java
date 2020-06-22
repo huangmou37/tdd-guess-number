@@ -1,12 +1,19 @@
 package cn.tdd.guessnumber;
 
+import cn.tdd.guessnumber.exception.WrongInputException;
+
 public class GuessMatcher {
 
   public GuessMatcher(String answer) {
     this.answer = answer;
+    this.inputValidator = new InputValidator();
   }
 
-  public String matchGuess(String guess) {
+  public String matchGuess(String guess) throws WrongInputException {
+    if (!inputValidator.validate(guess)) {
+      throw new WrongInputException();
+    }
+
     int numberOfCorrect = 0;
     int numberOfWrongPosition = 0;
 
@@ -24,4 +31,6 @@ public class GuessMatcher {
   }
 
   private String answer;
+
+  private InputValidator inputValidator;
 }

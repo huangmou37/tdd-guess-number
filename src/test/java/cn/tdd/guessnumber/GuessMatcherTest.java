@@ -1,12 +1,24 @@
 package cn.tdd.guessnumber;
 
+import cn.tdd.guessnumber.exception.WrongInputException;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class GuessMatcherTest {
 
+  @Mock
+  private InputValidator inputValidator;
+
+  @InjectMocks
   private GuessMatcher guessMatcher;
 
   @Before
@@ -40,5 +52,12 @@ public class GuessMatcherTest {
     String matchResult = guessMatcher.matchGuess("4321");
 
     assertEquals("0A4B", matchResult);
+  }
+
+  @Test(expected = WrongInputException.class)
+  public void should_throw_wrong_input_exception_when_match_guess_given_invalid_input() {
+    when(inputValidator.validate(any())).thenReturn(false);
+
+    guessMatcher.matchGuess("abcd");
   }
 }
